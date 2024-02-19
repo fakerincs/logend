@@ -1,0 +1,16 @@
+body{
+  background: rgb(45, 45, 45); 
+}
+canvas {
+  border:1px solid black;
+
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+p{
+  color: white;
+}
