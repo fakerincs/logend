@@ -18,7 +18,7 @@ var health = 100;
 
 // Image variables
 var backgroundImage = new Image();
-backgroundImage.src = './image.png'; // Replace with the path to your image
+backgroundImage.src = './image.jpg'; // Replace with the path to your image
 var gameCanvas = {
     canvas: document.createElement("canvas"),
     start: function () {
