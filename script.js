@@ -22,7 +22,7 @@ backgroundImage.src = './image.png'; // Replace with the path to your image
 var gameCanvas = {
     canvas: document.createElement("canvas"),
     start: function () {
-        this.context = this.canvas.getContext("webgl");
+        context = this.canvas.getContext("webgl");
         if (context === null) {
             alert("Your browser does not support WebGL.");
             return
@@ -32,7 +32,7 @@ var gameCanvas = {
         this.canvas.width = canvasWidth;
         this.canvas.height = canvasHeight;
         // Draw the background image
-        this.context.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight);
+        context.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight);
 
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         window.requestAnimationFrame(updateCanvas);
