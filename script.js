@@ -89,22 +89,18 @@ function main() {
     return textureInfo;
   }
 
-  var textureInfos = [
-    loadImageAndCreateTextureInfo('https://webglfundamentals.org/webgl/resources/star.jpg'),
-    loadImageAndCreateTextureInfo('https://webglfundamentals.org/webgl/resources/leaves.jpg'),
+  var textureInfos = [//information for the sprite(image), just scale and texture
     loadImageAndCreateTextureInfo('map.jpg'),
   ];
 
   var drawInfos = [];
-  var numToDraw = 9;
-  var speed = 60;
+  var numToDraw = textureInfos.length;
   for (var ii = 0; ii < numToDraw; ++ii) {
     var drawInfo = {
       x: Math.random() * gl.canvas.width,
       y: Math.random() * gl.canvas.height,
-      dx: Math.random() > 0.5 ? -1 : 1,
-      dy: Math.random() > 0.5 ? -1 : 1,
-      textureInfo: textureInfos[Math.random() * textureInfos.length | 0],
+
+      textureInfo: textureInfos[ii],//Math.random() * textureInfos.length | 0
     };
     drawInfos.push(drawInfo);
   }
