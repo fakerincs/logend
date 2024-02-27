@@ -58,7 +58,7 @@ function main() {
   // creates a texture info { width: w, height: h, texture: tex }
   // The texture will start with 1x1 pixels and be updated
   // when the image has loaded
-  function loadImageAndCreateTextureInfo(url) {
+  function loadImageAndCreateTextureInfo(url, name) {
     var tex = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, tex);
     // Fill the texture with a 1x1 blue pixel.
@@ -74,6 +74,7 @@ function main() {
       width: 1,   // we don't know the size until it loads
       height: 1,
       texture: tex,
+      name: name,
     };
     var img = new Image();
     img.addEventListener('load', function() {
@@ -90,7 +91,7 @@ function main() {
   }
 
   var textureInfos = [//information for the sprite(image), just scale and texture
-    loadImageAndCreateTextureInfo('map.jpg'),
+    loadImageAndCreateTextureInfo('map.jpg', "map"),
   ];
 
   var drawInfos = [];
@@ -104,7 +105,7 @@ function main() {
     };
     drawInfos.push(drawInfo);
   }
-
+  var speed = 300;
   function update(deltaTime) {
     drawInfos.forEach(function(drawInfo) {
       drawInfo.x += drawInfo.dx * deltaTime;
@@ -136,7 +137,7 @@ function main() {
     var deltaTime = Math.min(0.1, now - then);
     then = now;
 
-    //update(deltaTime);
+    update(deltaTime);
     draw();
 
     requestAnimationFrame(render);
@@ -144,9 +145,16 @@ function main() {
   requestAnimationFrame(render);
   var mousex = -1;
   var mousey = -1;
+  actions = {};
   canvas.addEventListener("mousemove", (e) => {
     mousex = e.clientX;
     mousey = e.clientY;
+  });
+  canvas.addEventListener("click", (e) => {
+    if (e.button === 2){
+      action = {x:e.clientX, y: e.clientY, type:"move"};
+      actions.move = action;
+    }
   });
   // Unlike images, textures do not have a width and height associated
   // with them so we'll pass in the width and height of the texture
