@@ -107,20 +107,8 @@ function main() {
 
   function update(deltaTime) {
     drawInfos.forEach(function(drawInfo) {
-      drawInfo.x += drawInfo.dx * speed * deltaTime;
-      drawInfo.y += drawInfo.dy * speed * deltaTime;
-      if (drawInfo.x < 0) {
-        drawInfo.dx = 1;
-      }
-      if (drawInfo.x >= gl.canvas.width) {
-        drawInfo.dx = -1;
-      }
-      if (drawInfo.y < 0) {
-        drawInfo.dy = 1;
-      }
-      if (drawInfo.y >= gl.canvas.height) {
-        drawInfo.dy = -1;
-      }
+      drawInfo.x += drawInfo.dx * deltaTime;
+      drawInfo.y += drawInfo.dy * deltaTime;
     });
   }
 
@@ -154,6 +142,12 @@ function main() {
     requestAnimationFrame(render);
   }
   requestAnimationFrame(render);
+  var mousex = -1;
+  var mousey = -1;
+  canvas.addEventListener("mousemove", (mousex, mousey) = (e) => {
+    console.log(mousex, mousey);
+    return(e.clientX, e.clientY);
+  })
 
   // Unlike images, textures do not have a width and height associated
   // with them so we'll pass in the width and height of the texture
