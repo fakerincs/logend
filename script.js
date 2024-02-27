@@ -97,8 +97,8 @@ function main() {
   var numToDraw = textureInfos.length;
   for (var ii = 0; ii < numToDraw; ++ii) {
     var drawInfo = {
-      x: Math.random() * gl.canvas.width,
-      y: Math.random() * gl.canvas.height,
+      x: 0,//Math.random() * gl.canvas.width,
+      y: 0,//Math.random() * gl.canvas.height,
 
       textureInfo: textureInfos[ii],//Math.random() * textureInfos.length | 0
     };
@@ -136,7 +136,7 @@ function main() {
     var deltaTime = Math.min(0.1, now - then);
     then = now;
 
-    update(deltaTime);
+    //update(deltaTime);
     draw();
 
     requestAnimationFrame(render);
@@ -145,7 +145,6 @@ function main() {
   var mousex = -1;
   var mousey = -1;
   canvas.addEventListener("mousemove", (e) => {
-    console.log(mousex, mousey)
     mousex = e.clientX;
     mousey = e.clientY;
   });
