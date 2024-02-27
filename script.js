@@ -144,11 +144,11 @@ function main() {
   requestAnimationFrame(render);
   var mousex = -1;
   var mousey = -1;
-  canvas.addEventListener("mousemove", (mousex, mousey) = (e) => {
-    console.log(mousex, mousey);
-    return(e.clientX, e.clientY);
-  })
-
+  canvas.addEventListener("mousemove", (e) => {
+    console.log(mousex, mousey)
+    mousex = e.clientX;
+    mousey = e.clientY;
+  });
   // Unlike images, textures do not have a width and height associated
   // with them so we'll pass in the width and height of the texture
   function drawImage(tex, texWidth, texHeight, dstX, dstY) {
