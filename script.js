@@ -92,7 +92,7 @@ function main() {
   var textureInfos = [
     loadImageAndCreateTextureInfo('https://webglfundamentals.org/webgl/resources/star.jpg'),
     loadImageAndCreateTextureInfo('https://webglfundamentals.org/webgl/resources/leaves.jpg'),
-    loadImageAndCreateTextureInfo('https://webglfundamentals.org/webgl/resources/keyboard.jpg'),
+    loadImageAndCreateTextureInfo('map.jpg'),
   ];
 
   var drawInfos = [];
