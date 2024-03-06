@@ -92,6 +92,7 @@ function main() {
 
   var textureInfos = [//information for the sprite(image), just scale and texture
     loadImageAndCreateTextureInfo('map.jpg', "map"),
+    loadImageAndCreateTextureInfo('Poppy_0.jpg', "player"),
   ];
 
   var drawInfos = [];
@@ -106,10 +107,20 @@ function main() {
     drawInfos.push(drawInfo);
   }
   var speed = 300;
+  var playerposx = 0;
+  var playerposy = 0;
   function update(deltaTime) {
+    actions.forEach(function(action){
+      if (action.type == "move"){
+        direction = Math.atan(opposite / adjacent) 
+      }
+
+    });
     drawInfos.forEach(function(drawInfo) {
-      drawInfo.x += drawInfo.dx * deltaTime;
-      drawInfo.y += drawInfo.dy * deltaTime;
+      if (drawInfo.textureInfo.name == "player"){
+        drawInfo.x += speed * deltaTime;
+        drawInfo.y += speed * deltaTime;
+      }
     });
   }
 
@@ -145,15 +156,15 @@ function main() {
   requestAnimationFrame(render);
   var mousex = -1;
   var mousey = -1;
-  actions = {};
+  var actions = {};
   canvas.addEventListener("mousemove", (e) => {
     mousex = e.clientX;
     mousey = e.clientY;
   });
   canvas.addEventListener("click", (e) => {
     if (e.button === 2){
-      action = {x:e.clientX, y: e.clientY, type:"move"};
-      actions.move = action;
+      action = {type:"move", x: e.clientX - (gl.canvas.width/2), y: e.clientY - (gl.canvas.height/2), startx: playerposx, starty:playerposy};//vector distance from center 
+      actions.push(action);
     }
   });
   // Unlike images, textures do not have a width and height associated
